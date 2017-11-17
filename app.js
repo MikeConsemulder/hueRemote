@@ -36,7 +36,7 @@ function User() {
 
 //global variables
 var app = express();
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 1337;
 var possible_answers = ['beer','coffee','sex','whiskey'];
 
 // body parser middleware
