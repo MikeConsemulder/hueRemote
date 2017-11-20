@@ -4,6 +4,11 @@
 // if user is running mozilla then use it's built-in WebSocket
 window.WebSocket = window.WebSocket || window.MozWebSocket;
 
+
+var url = 'https://officehue.herokuapp.com/';
+var port = '1337';
+// url = 'ws://127.0.0.1:1337';
+
 var connection = new WebSocket('ws://127.0.0.1:1337');
 
 connection.onopen = function () {
