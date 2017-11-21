@@ -5,7 +5,7 @@ let server = http.createServer(function(request, response) {
     // process HTTP request. Since we're writing just WebSockets
     // server we don't have to implement anything.
 });
-server.listen(1337, function() { });
+server.listen(process.env.PORT || 1337, function() { });
 
 //Sending data
 //connection.send('');
@@ -18,7 +18,7 @@ wsServer = new WebSocketServer({
 
 // WebSocket server
 wsServer.on('request', function(request) {
-    var connection = request.accept(null, request.origin);
+    let connection = request.accept(null, request.origin);
 
     console.log('new user connected');
 
