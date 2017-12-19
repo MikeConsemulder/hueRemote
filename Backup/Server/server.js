@@ -1,11 +1,12 @@
-var WebSocketServer = require('websocket').server;
-var http = require('http');
+let WebSocketServer = require('websocket').server;
+let http = require('http');
 
-var server = http.createServer(function(request, response) {
+let server = http.createServer(function(request, response) {
     // process HTTP request. Since we're writing just WebSockets
     // server we don't have to implement anything.
 });
-server.listen(1337, function() { });
+
+server.listen(process.env.PORT || 1337, function() { });
 
 
 //Sending data
@@ -19,7 +20,7 @@ wsServer = new WebSocketServer({
 
 // WebSocket server
 wsServer.on('request', function(request) {
-    var connection = request.accept(null, request.origin);
+    let connection = request.accept(null, request.origin);
 
     console.log('new user connected');
 

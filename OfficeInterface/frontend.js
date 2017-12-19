@@ -4,32 +4,14 @@
 // if user is running mozilla then use it's built-in WebSocket
 window.WebSocket = window.WebSocket || window.MozWebSocket;
 
+var url = 'ws://officehue.herokuapp.com';
+//url = 'ws://127.0.0.1:3000';
+//var port = '1337';
 
-var url = 'https://officehue.herokuapp.com/';
-var port = '1337';
-// url = 'ws://127.0.0.1:1337';
+let socket = io.connect(url);
 
-var connection = new WebSocket('ws://127.0.0.1:1337');
+socket.on('news', function (data) {
 
-connection.onopen = function () {
-    // connection is opened and ready to use
-    console.log('open');
-};
-
-connection.onerror = function (error) {
-    console.log('error');
-    // an error occurred when sending/receiving data
-};
-
-connection.onmessage = function (message) {
-
-    console.log(message.data);
-    // try to decode json (I assume that each message
-    // from server is json)
-    try {
-        //
-    } catch (e) {
-        //
-    }
-    // handle incoming message
-};
+	console.log(data);
+	socket.emit('my other event', { my: 'data' });
+});
