@@ -1,10 +1,11 @@
 /**
  * Created by Mike C on 17-Nov-17.
  */
+
 // if user is running mozilla then use it's built-in WebSocket
 window.WebSocket = window.WebSocket || window.MozWebSocket;
 
-var connection = new WebSocket('ws://127.0.0.1:1337');
+let connection = new WebSocket('ws://127.0.0.1:1337');
 
 connection.onopen = function () {
     // connection is opened and ready to use
