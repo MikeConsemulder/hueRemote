@@ -1,14 +1,34 @@
 /**
  * Created by Mike C on 17-Nov-17.
  */
-// if user is running mozilla then use it's built-in WebSocket
-window.WebSocket = window.WebSocket || window.MozWebSocket;
 
-let url = 'officehue.herokuapp.com';
-let socket = io.connect(url);
+//First create the connection
+let socket = io();
+//Present yourself as an normal connection
+presentYourself('normalUser');
 
-socket.on('news', function (data) {
+let el = document.getElementById('placeholder');
 
-	console.log(data);
-	socket.emit('my other event', { my: 'data' });
+function presentYourself(connectionType){
+
+	socket.emit('clientPresents', connectionType);
+}
+
+
+
+//socket listeners
+
+socket.on('news', function(data) {
+
+	el.innerHTML = 'data: ' + data.hello;
+});
+
+socket.on('officeMapping', function(officeMapping){
+
+	console.log(officeMapping);
+});
+
+socket.on('mappingScript', function(officeMapping){
+
+	console.log(officeMapping);
 });
