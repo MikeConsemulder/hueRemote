@@ -7,25 +7,27 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 
-app.use('/officeInterface', express.static('OfficeInterface'));
+console.log('yoyo running ' + PORT);
 
-app.get('/', function(req, res){
-
-	res.sendFile(path.join(__dirname, '..', 'OfficeInterface/index.html'));
-});
-
-io.on('connection', function(socket){
-
-	socket.emit('news', { hello: 'world' });
-	socket.on('my other event', function (data) {
-
-		console.log(data);
-	});
-});
-
-server.listen(PORT, function(){
-    console.log('listening on *:3000');
-});
+// app.use('/officeInterface', express.static('OfficeInterface'));
+//
+// app.get('/', function(req, res){
+//
+// 	res.sendFile(path.join(__dirname, '..', 'OfficeInterface/index.html'));
+// });
+//
+// io.on('connection', function(socket){
+//
+// 	socket.emit('news', { hello: 'world' });
+// 	socket.on('my other event', function (data) {
+//
+// 		console.log(data);
+// 	});
+// });
+//
+// server.listen(PORT, function(){
+//     console.log('listening on *:3000');
+// });
 
 // 'use strict';
 //
