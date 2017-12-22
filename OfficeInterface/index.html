@@ -1,12 +1,26 @@
-<!doctype html>
+<!--<!doctype html>-->
+<!--<html>-->
+<!--<head>-->
+    <!--<title>Hue remote</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<script src="/socket.io/socket.io.js"></script>-->
+<!--<script src="/officeInterface/frontend.js"></script>-->
+<!--<h1>Kakhoofd Complete!</h1>-->
+<!--<div id="server-time"></div>-->
+<!--</body>-->
+<!--</html>-->
+
 <html>
-<head>
-    <title>Hue remote</title>
-</head>
 <body>
+<p id='placeholder'></p>
 <script src="/socket.io/socket.io.js"></script>
-<script src="/officeInterface/frontend.js"></script>
-<h1>Kakhoofd Complete!</h1>
-<div id="server-time"></div>
+<script>
+	var socket = io();
+	var el = document.getElementById('placeholder');
+	socket.on('news', function(data) {
+		el.innerHTML = 'data: ' + data.hello;
+	});
+</script>
 </body>
 </html>
