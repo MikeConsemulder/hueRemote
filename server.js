@@ -3,23 +3,23 @@ let app = express();
 let server = require('http').Server(app);
 let io = require('socket.io')(server);
 const path = require('path');
-
-
 const PORT = process.env.PORT || 3000;
 
 app.use('/officeInterface', express.static('OfficeInterface'));
+app.use('/json', express.static('json'));
 
 app.get('/', function(req, res){
 
-	res.sendFile(__dirname + '/OfficeInterface/index.html');
+	res.sendFile(__dirname + '/OfficeInterface/office.html');
 });
 
 io.on('connection', function(socket){
 
 	socket.emit('news', { hello: 'world' });
-	socket.on('my other event', function (data) {
 
-		console.log(data);
+	socket.on('clientPresents', function (data) {
+
+		checkUser(socket, data);
 	});
 });
 
@@ -27,24 +27,15 @@ server.listen(PORT, function(){
     console.log('listening on *:' + PORT);
 });
 
-// 'use strict';
-//
-// const express = require('express');
-// const socketIO = require('socket.io');
-// const path = require('path');
-//
-// const PORT = process.env.PORT || 3000;
-// const INDEX = path.join(__dirname, '..', 'OfficeInterface/index.html');
-//
-// const server = express()
-// 	.use((req, res) => res.sendFile(INDEX) )
-// 	.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-//
-// const io = socketIO(server);
-//
-// io.on('connection', (socket) => {
-// 	console.log('Client connected');
-// 	socket.on('disconnect', () => console.log('Client disconnected'));
-// });
-//
-// setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+function checkUser(socket, user){
+
+	if(user === 'normalUser'){
+
+		socket.emit('officeMapping', '{test,test}');
+	}else if(user === 'rasp'){
+
+		console.log('save connection as raspberryPi');
+		socket.emit('mappingScript', JSON.stringify(__dirname + '/Json/officeMapping.json'));
+		//
+	}
+}
